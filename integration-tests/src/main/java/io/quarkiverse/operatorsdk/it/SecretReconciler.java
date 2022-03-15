@@ -27,7 +27,6 @@ public class SecretReconciler implements Reconciler<Secret> {
                 }
                 final String foo = data.putIfAbsent("quarkus-operator-sdk.added-value",
                         Base64.getEncoder().encodeToString("quarkus-operator-sdk rocks!".getBytes()));
-                ;
                 if (foo == null) {
                     return UpdateControl.updateResource(secret);
                 }
