@@ -148,8 +148,19 @@ public class QuarkusControllerConfiguration<R extends HasMetadata> implements Co
         return statusClassName;
     }
 
-    @SuppressWarnings("unchecked")
+    /*
+     * @Override
+     * 
+     * @SuppressWarnings("unchecked")
+     * 
+     * @Override
+     * public Map<String, DependentResourceSpec<?, ?, ?>> getDependentResources() {
+     * return (Map<String, DependentResourceSpec<?, ?>>) dependentResources;
+     * }
+     */
+
     @Override
+    @SuppressWarnings("unchecked")
     public Map<String, DependentResourceSpec<?, ?>> getDependentResources() {
         return (Map<String, DependentResourceSpec<?, ?>>) dependentResources;
     }
