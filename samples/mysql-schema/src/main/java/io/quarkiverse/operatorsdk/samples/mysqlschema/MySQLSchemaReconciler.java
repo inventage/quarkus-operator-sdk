@@ -23,13 +23,17 @@ import io.javaoperatorsdk.operator.api.reconciler.EventSourceContext;
 import io.javaoperatorsdk.operator.api.reconciler.EventSourceInitializer;
 import io.javaoperatorsdk.operator.api.reconciler.Reconciler;
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
+import io.javaoperatorsdk.operator.api.reconciler.dependent.Dependent;
 import io.javaoperatorsdk.operator.processing.event.source.EventSource;
 import io.javaoperatorsdk.operator.processing.event.source.polling.PerResourcePollingEventSource;
 import io.quarkiverse.operatorsdk.samples.mysqlschema.schema.Schema;
 import io.quarkiverse.operatorsdk.samples.mysqlschema.schema.SchemaService;
 import io.quarkus.logging.Log;
 
-@ControllerConfiguration
+@ControllerConfiguration(dependents = {
+        @Dependent(type = DeploymentDependentResource.class),
+        @Dependent(type = ServiceDependentResource.class)
+})
 public class MySQLSchemaReconciler
         implements Reconciler<MySQLSchema>, ErrorStatusHandler<MySQLSchema>, EventSourceInitializer<MySQLSchema>,
         Cleaner<MySQLSchema> {
