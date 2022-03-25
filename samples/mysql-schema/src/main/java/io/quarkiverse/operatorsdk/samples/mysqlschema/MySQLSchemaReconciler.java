@@ -52,7 +52,7 @@ public class MySQLSchemaReconciler
 
     @Override
     public Map<String, EventSource> prepareEventSources(EventSourceContext<MySQLSchema> context) {
-        return Map.of("", new PerResourcePollingEventSource<>(schemaPollingResourceSupplier, context.getPrimaryCache(),
+        return Map.of("schema", new PerResourcePollingEventSource<>(schemaPollingResourceSupplier, context.getPrimaryCache(),
                 POLL_PERIOD, Schema.class));
     }
 
